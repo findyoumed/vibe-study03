@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone - Premium Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- [LOG: 20260330_1523] Premium Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="navbar__logo">
+            <h1 id="logo">NETFLIX</h1>
+        </div>
+
+        <div class="navbar__filters">
+            <div class="filter-group">
+                <label for="region-select">지역:</label>
+                <select id="region-select" class="custom-select">
+                    <option value="KR" selected>대한민국 (KR)</option>
+                    <option value="US">미국 (US)</option>
+                    <option value="JP">일본 (JP)</option>
+                    <option value="GB">영국 (GB)</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="lang-select">언어:</label>
+                <select id="lang-select" class="custom-select">
+                    <option value="">모든 언어 (ALL)</option>
+                    <option value="ko-KR" selected>한국어 (KO)</option>
+                    <option value="en-US">영어 (EN)</option>
+                </select>
+            </div>
+            <!-- [NEW] Genre and Sort Filters -->
+            <div class="filter-group">
+                <label for="genre-select">장르:</label>
+                <select id="genre-select" class="custom-select">
+                    <option value="">모든 장르</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort-select">정렬:</label>
+                <select id="sort-select" class="custom-select">
+                    <option value="popularity.desc">인기순</option>
+                    <option value="release_date.desc">최신순</option>
+                    <option value="vote_average.desc">평점순</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="navbar__right">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="movie-search" placeholder="제목을 입력하세요..." autocomplete="off">
+            </div>
+            <!-- [LOG: 20260330_1523] Fixed User Profile -->
+            <div class="user-profile" id="user-profile"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- [LOG: 20260330_1523] Hero Carousel -->
+        <section class="hero" id="hero">
+            <div class="hero__overlay"></div>
+            <button class="hero__nav hero__nav--prev" id="hero-prev">‹</button>
+            <button class="hero__nav hero__nav--next" id="hero-next">›</button>
+            <div class="hero__content">
+                <h2 class="hero__title" id="hero-title">데이터를 불러오는 중...</h2>
+                <p class="hero__overview" id="hero-overview"></p>
+                <div class="hero__buttons">
+                    <button class="btn btn--play" id="btn-play">▶ 재생</button>
+                    <button class="btn btn--info" id="btn-info">ⓘ 상세 정보</button>
+                </div>
+            </div>
+            <div class="hero__indicators" id="hero-indicators"></div>
+        </section>
+
+        <!-- [LOG: 20260330_1523] Movie Sections with Navigation -->
+        <section class="movie-section hidden" id="search-section">
+            <h3 class="movie-section__title">검색 결과</h3>
+            <div class="movie-row-container">
+                <button class="row-nav row-nav--prev" onclick="scrollRow('search-row', -1)">‹</button>
+                <div class="movie-row-wrapper" id="search-row-wrapper">
+                    <div class="movie-row" id="search-row"></div>
+                </div>
+                <button class="row-nav row-nav--next" onclick="scrollRow('search-row', 1)">›</button>
+            </div>
+        </section>
+
+        <section class="movie-section">
+            <h3 class="movie-section__title" id="now-playing-title">현재 상영 중인 영화</h3>
+            <div class="movie-row-container">
+                <button class="row-nav row-nav--prev" onclick="scrollRow('now-playing-row', -1)">‹</button>
+                <div class="movie-row-wrapper" id="now-playing-row-wrapper">
+                    <div class="movie-row" id="now-playing-row"></div>
+                </div>
+                <button class="row-nav row-nav--next" onclick="scrollRow('now-playing-row', 1)">›</button>
+            </div>
+        </section>
+
+        <section class="movie-section">
+            <h3 class="movie-section__title" id="popular-title">오늘의 TOP 20 인기 영화</h3>
+            <div class="movie-row-container">
+                <button class="row-nav row-nav--prev" onclick="scrollRow('popular-row', -1)">‹</button>
+                <div class="movie-row-wrapper" id="popular-row-wrapper">
+                    <div class="movie-row" id="popular-row"></div>
+                </div>
+                <button class="row-nav row-nav--next" onclick="scrollRow('popular-row', 1)">›</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Netflix Clone Premium. real-time interactive movie portal.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
